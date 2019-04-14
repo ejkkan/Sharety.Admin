@@ -14,6 +14,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import Router from 'next/router'
+import Link from 'next/link';
+
 
 const drawerWidth = 240;
 
@@ -69,7 +72,7 @@ class PersistentDrawerLeft extends React.Component {
   render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
-
+    const url = currentPath("");
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -93,29 +96,46 @@ class PersistentDrawerLeft extends React.Component {
           </div>
           <Divider />
           <List>
-            {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            <Link href={"/admin"} >
+              <ListItem selected={currentPath("/admin")} button >
+                <ListItemIcon > 
+                  <InboxIcon />
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={"Overview"} />
               </ListItem>
-            ))}
+            </Link>
+            <Link href={"/admin/about"}>
+              <ListItem selected={currentPath("/admin/about")} button >
+                <ListItemIcon > 
+                  <MailIcon />
+                </ListItemIcon>
+                <ListItemText primary={"About"} />
+              </ListItem>
+            </Link>
           </List>
           <Divider />
-          <List>
-            {["All mail", "Trash", "Spam"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
         </Drawer>
       </div>
     );
+  }
+}
+
+const mapActivePage = (page, url) => {
+  switch (page) {
+    case "":
+      return url === "/admin"
+    case "about":
+      return url === "/admin/about"
+    default:
+      return false;
+  }
+}
+
+const currentPath = (originalUrl = "") => {
+  if (typeof window === 'object') {
+    return originalUrl === Router.asPath
+  } else {
+    return originalUrl === originalUrl
   }
 }
 

@@ -4,8 +4,8 @@ import Appbar from "../components/appbar";
 
 export default props => (
   <div>
-    {console.log(props)}
     <Appbar />
     <Drawer />
+    {props.children}
   </div>
 );
