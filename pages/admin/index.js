@@ -14,12 +14,11 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 20
   },
   childrenOffset: {
-    backgroundColor:'red',
-    marginLeft: 250,
+    backgroundColor: "red",
     display: "flex",
     alignSelf: "stretch",
     flexDirection: "column"
-},
+  }
 });
 
 function About(props) {
@@ -28,23 +27,21 @@ function About(props) {
   return (
     <div className={classes.root}>
       <AdminWrapper>
-          <div className={classes.childrenOffset}>
-            <Typography variant="h4" gutterBottom>
-                Material-UI
-            </Typography>
-            <Typography variant="subtitle1" gutterBottom>
-                about page
-            </Typography>
-            <Typography gutterBottom>
-                <Link href="/admin/about">
-                <a>Admin / About</a>
-                </Link>
-            </Typography>
-            <Button variant="contained" color="primary">
-                Do nothing button
-            </Button>
-        </div>
-    </AdminWrapper>
+        <Typography variant="h4" gutterBottom>
+          Material-UI
+        </Typography>
+        <Typography variant="subtitle1" gutterBottom>
+          about page
+        </Typography>
+        <Typography gutterBottom>
+          <Link href="/admin/about">
+            <a>Admin / About</a>
+          </Link>
+        </Typography>
+        <Button variant="contained" color="primary">
+          Do nothing button
+        </Button>
+      </AdminWrapper>
     </div>
   );
 }
